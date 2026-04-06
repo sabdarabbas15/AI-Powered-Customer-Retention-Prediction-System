@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Churn Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* --- BODY & GLOBAL --- */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* --- DASHBOARD CONTAINER --- */
+.dashboard {
+  max-width: 1000px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+/* --- HEADER --- */
+h1 {
+  text-align: center;
+  color: #2575fc;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* --- SECTIONS --- */
+.section {
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(145deg, #fdfbfb, #ebedee);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* --- GRID FORM --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #1b1b2f;
+}
+
+/* --- FLOATING INPUTS --- */
+input, select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+input:focus, select:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 15px rgba(106,17,203,0.3);
+  outline: none;
+}
+
+/* --- BUTTON --- */
+button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* --- RESULT --- */
+.result {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 30px;
+  font-weight: 700;
+  color: #6a11cb;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff, #d6e0ff);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(106,17,203,0.15);
+  transition: all 0.3s ease;
+}
+
+.result.show {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(106,17,203,0.25);
+}
+
+/* --- NETWORK CARDS --- */
+.sim-options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.sim-card {
+  flex: 1 1 120px;
+  border: 2px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.sim-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.sim-card .emoji-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.sim-card p {
+  margin: 0;
+  font-weight: 600;
+  color: #1b1b2f;
+}
+
+.sim-card:hover {
+  transform: translateY(-8px) scale(1.1);
+  border-color: #6a11cb;
+  box-shadow: 0 16px 30px rgba(106,17,203,0.3);
+}
+
+.sim-card.active {
+  border-color: #6a11cb;
+  background: linear-gradient(145deg, #e6e0ff, #d6ccff);
+  box-shadow: 0 0 25px rgba(106,17,203,0.5);
+}
+
+/* Airtel special active color */
+.sim-card[data-value="Airtel"].active {
+  border-color: #e40000;
+  background: linear-gradient(145deg, #fff0f0, #ffd6d6);
+  box-shadow: 0 0 25px rgba(228,0,0,0.3);
+}
+
+/* --- ABOUT AUTHOR --- */
+.nav-item {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.nav-item button {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.nav-item button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+#authorDropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  width: 300px;
+  font-size: 0.95rem;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#authorDropdown.show {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- RESPONSIVE --- */
+@media(max-width:750px){
+  .grid { grid-template-columns: 1fr; }
+  .sim-options { flex-direction: column; gap: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ABOUT AUTHOR -->
+<div class="nav-item">
+  <button onclick="toggleDropdown()">👨‍💻 About Author</button>
+  <div id="authorDropdown">
+    <h3>About Author</h3>
+    <p>
+      <b>Name:</b> G Nagendhra Prasad<br>
+      <b>Email:</b> <a href="mailto:gnagendhraprasad4@gmail.com">gnagendhraprasad4@gmail.com</a>
+    </p>
+  </div>
+</div>
+
+<div class="dashboard">
+<h1>📊 Customer Churn Prediction</h1>
+
+<form action="/predict" method="post">
+
+<!-- CUSTOMER DETAILS -->
+<div class="section">
+<h3>👤 Customer Details</h3>
+<div class="grid">
+  <div><label>Gender</label><select name="gender"><option>Male</option><option>Female</option></select></div>
+  <div><label>Senior Citizen</label><select name="SeniorCitizen"><option value="0">No</option><option value="1">Yes</option></select></div>
+  <div><label>Partner</label><select name="Partner"><option>No</option><option>Yes</option></select></div>
+  <div><label>Dependents</label><select name="Dependents"><option>No</option><option>Yes</option></select></div>
+  <div><label>Tenure</label><input type="number" name="tenure" required></div>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+<h3>📱 Services</h3>
+<div class="grid">
+  <div><label>Phone Service</label><select name="PhoneService"><option>No</option><option>Yes</option></select></div>
+  <div><label>Multiple Lines</label><select name="MultipleLines"><option>No</option><option>Yes</option><option>No phone service</option></select></div>
+  <div><label>Internet Service</label><select name="InternetService"><option>DSL</option><option>Fiber optic</option><option>No</option></select></div>
+  <div><label>Online Security</label><select name="OnlineSecurity"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Online Backup</label><select name="OnlineBackup"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Device Protection</label><select name="DeviceProtection"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Tech Support</label><select name="TechSupport"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Streaming TV</label><select name="StreamingTV"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Streaming Movies</label><select name="StreamingMovies"><option>No</option><option>Yes</option><option>No internet service</option></select></div>
+  <div><label>Contract</label><select name="Contract"><option>Month-to-month</option><option>One year</option><option>Two year</option></select></div>
+</div>
+</div>
+<!-- NETWORK a-->
+<div class="section">
+<h3>📶 Network</h3>
+<input type="hidden" name="Networks" id="networkInput" value="Airtel">
+<div class="sim-options">
+  <!-- Airtel -->
+  <div class="sim-card active" data-value="Airtel">
+    <img src="../static/images/airtel.png" onerror="this.style.display='none'; this.parentElement.querySelector('.emoji-icon').style.display='block'">
+    <span class="emoji-icon" style="display:none;">📡</span>
+    <p>Airtel</p>
+  </div>
+  <!-- BSNL -->
+  <div class="sim-card" data-value="BSNL">
+    <img src="../static/images/bsnl.webp" onerror="this.style.display='none'; this.parentElement.querySelector('.emoji-icon').style.display='block'">
+    <span class="emoji-icon" style="display:none;">📶</span>
+    <p>BSNL</p>
+  </div>
+  <!-- Idea -->
+  <div class="sim-card" data-value="Idea">
+    <img src="../static/images/idea.png" onerror="this.style.display='none'; this.parentElement.querySelector('.emoji-icon').style.display='block'">
+    <span class="emoji-icon" style="display:none;">💡</span>
+    <p>Idea</p>
+  </div>
+  <!-- Jio -->
+  <div class="sim-card" data-value="Jio">
+    <img src="../static/images/jio.png" onerror="this.style.display='none'; this.parentElement.querySelector('.emoji-icon').style.display='block'">
+    <span class="emoji-icon" style="display:none;">🔵</span>
+    <p>Jio</p>
+  </div>
+</div>
+</div>
+
+<!-- BILLING -->
+<div class="section">
+<h3>💳 Billing</h3>
+<div class="grid">
+  <div><label>Paperless Billing</label><select name="PaperlessBilling"><option>No</option><option>Yes</option></select></div>
+  <div><label>Payment Method</label><select name="PaymentMethod"><option>Electronic check</option><option>Mailed check</option><option>Credit card (automatic)</option></select></div>
+  <div><label>Monthly Charges</label><input type="number" name="MonthlyCharges" required></div>
+  <div><label>Total Charges</label><input type="number" name="TotalCharges" required></div>
+</div>
+</div>
+
+<button type="submit">Predict</button>
+</form>
+
+<div class="result" id="predictionResult">{{ prediction }}</div>
+</div>
+
+<script>
+/* --- NETWORK CARD --- */
+const cards = document.querySelectorAll('.sim-card');
+const input = document.getElementById('networkInput');
+cards.forEach(card=>{
+  card.addEventListener('click',()=>{
+    cards.forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    input.value = card.dataset.value;
+  });
+});
+
+/* --- AUTHOR DROPDOWN --- */
+function toggleDropdown(){
+  const dropdown = document.getElementById('authorDropdown');
+  dropdown.classList.toggle('show');
+}
+
+window.addEventListener('click', function(e){
+  const dropdown = document.getElementById('authorDropdown');
+  const button = document.querySelector('.nav-item button');
+  if(!dropdown.contains(e.target) && !button.contains(e.target)){
+    dropdown.classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+2026-04-06 15:30:48,261 - INFO - Before x_train_cat Columns (5634, 16) 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Networks'],
+      dtype='str')
+2026-04-06 15:30:48,261 - INFO - Befoer x_test_cat Columns (1409, 16) 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Networks'],
+      dtype='str')
+2026-04-06 15:30:48,295 - INFO - After NOMINAL x_train_cat Columns (5634, 28) 
+ : Index(['Contract', 'gender_Male', 'Partner_Yes', 'Dependents_Yes',
+       'PhoneService_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaperlessBilling_Yes', 'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Networks_BSNL', 'Networks_Idea', 'Networks_Jio'],
+      dtype='str')
+2026-04-06 15:30:48,295 - INFO - After NOMINAL x_test_cat Columns (1409, 28) 
+ : Index(['Contract', 'gender_Male', 'Partner_Yes', 'Dependents_Yes',
+       'PhoneService_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaperlessBilling_Yes', 'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Networks_BSNL', 'Networks_Idea', 'Networks_Jio'],
+      dtype='str')
+2026-04-06 15:30:48,295 - INFO - ===========================OrdinalEncoder=============================================================
+2026-04-06 15:30:48,300 - INFO - After ODINAL x_train_cat Columns (5634, 28) 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'MultipleLines_No phone service', 'MultipleLines_Yes',
+       'InternetService_Fiber optic', 'InternetService_No',
+       'OnlineSecurity_No internet service', 'OnlineSecurity_Yes',
+       'OnlineBackup_No internet service', 'OnlineBackup_Yes',
+       'DeviceProtection_No internet service', 'DeviceProtection_Yes',
+       'TechSupport_No internet service', 'TechSupport_Yes',
+       'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaperlessBilling_Yes', 'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Networks_BSNL', 'Networks_Idea', 'Networks_Jio', 'Contract_od'],
+      dtype='str')
+2026-04-06 15:30:48,300 - INFO - After ODINAL x_test_cat Columns (1409, 28) 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'MultipleLines_No phone service', 'MultipleLines_Yes',
+       'InternetService_Fiber optic', 'InternetService_No',
+       'OnlineSecurity_No internet service', 'OnlineSecurity_Yes',
+       'OnlineBackup_No internet service', 'OnlineBackup_Yes',
+       'DeviceProtection_No internet service', 'DeviceProtection_Yes',
+       'TechSupport_No internet service', 'TechSupport_Yes',
+       'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaperlessBilling_Yes', 'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Networks_BSNL', 'Networks_Idea', 'Networks_Jio', 'Contract_od'],
+      dtype='str')
+2026-04-06 15:30:48,302 - INFO - Train NULL VALUES : 
+gender_Male                              0
+Partner_Yes                              0
+Dependents_Yes                           0
+PhoneService_Yes                         0
+MultipleLines_No phone service           0
+MultipleLines_Yes                        0
+InternetService_Fiber optic              0
+InternetService_No                       0
+OnlineSecurity_No internet service       0
+OnlineSecurity_Yes                       0
+OnlineBackup_No internet service         0
+OnlineBackup_Yes                         0
+DeviceProtection_No internet service     0
+DeviceProtection_Yes                     0
+TechSupport_No internet service          0
+TechSupport_Yes                          0
+StreamingTV_No internet service          0
+StreamingTV_Yes                          0
+StreamingMovies_No internet service      0
+StreamingMovies_Yes                      0
+PaperlessBilling_Yes                     0
+PaymentMethod_Credit card (automatic)    0
+PaymentMethod_Electronic check           0
+PaymentMethod_Mailed check               0
+Networks_BSNL                            0
+Networks_Idea                            0
+Networks_Jio                             0
+Contract_od                              0
+dtype: int64
+2026-04-06 15:30:48,302 - INFO - Test NULL VALUES : 
+gender_Male                              0
+Partner_Yes                              0
+Dependents_Yes                           0
+PhoneService_Yes                         0
+MultipleLines_No phone service           0
+MultipleLines_Yes                        0
+InternetService_Fiber optic              0
+InternetService_No                       0
+OnlineSecurity_No internet service       0
+OnlineSecurity_Yes                       0
+OnlineBackup_No internet service         0
+OnlineBackup_Yes                         0
+DeviceProtection_No internet service     0
+DeviceProtection_Yes                     0
+TechSupport_No internet service          0
+TechSupport_Yes                          0
+StreamingTV_No internet service          0
+StreamingTV_Yes                          0
+StreamingMovies_No internet service      0
+StreamingMovies_Yes                      0
+PaperlessBilling_Yes                     0
+PaymentMethod_Credit card (automatic)    0
+PaymentMethod_Electronic check           0
+PaymentMethod_Mailed check               0
+Networks_BSNL                            0
+Networks_Idea                            0
+Networks_Jio                             0
+Contract_od                              0
+dtype: int64

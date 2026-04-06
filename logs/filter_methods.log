@@ -1,0 +1,29 @@
+2026-04-06 15:30:48,255 - INFO - Before train columns : (5634, 4) 
+ :  Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,255 - INFO - Before test columns : (1409, 4) 
+ : Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,257 - INFO - Number of GOOD COLUMNS : 4 : Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,257 - INFO - Number of BAD COLUMNS : 0 : Index([], dtype='str')
+2026-04-06 15:30:48,259 - INFO - After FILTER METHODS train columns : (5634, 4) 
+ :  Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,259 - INFO - After FILTER METHODS test columns : (1409, 4) 
+ : Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,259 - INFO - ===========================HYPOTHESIS_TESTING=============================================================
+2026-04-06 15:30:48,261 - INFO - After HYPOTHESIS TESTING train columns : (5634, 4) 
+ :  Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
+2026-04-06 15:30:48,261 - INFO - After HYPOTHESIS TESTING test columns : (1409, 4) 
+ : Index(['SeniorCitizen', 'tenure_mad', 'MonthlyCharges_mad',
+       'TotalCharges_mode_mad'],
+      dtype='str')
